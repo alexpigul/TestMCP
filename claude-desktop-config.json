@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "weather-local": {
+      "command": "node",
+      "args": ["/path/to/mcp-weather-server/dist/index.js"],
+      "env": {
+        "OPENWEATHER_API_KEY": "6bb0e605343c674f8a58d1b5032e5cf5",
+        "DEPLOYMENT_MODE": "stdio"
+      }
+    },
+    "weather-cloud": {
+      "type": "sse",
+      "url": "http://localhost:3000/sse",
+      "headers": {
+        "Authorization": "Bearer mcp_dev_1234567890abcdef1234567890abcdef"
+      }
+    }
+  }
+} 

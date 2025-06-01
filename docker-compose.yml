@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  mcp-weather-server:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: mcp-weather
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - DEPLOYMENT_MODE=cloud
+      - PORT=3000
+      - OPENWEATHER_API_KEY=6bb0e605343c674f8a58d1b5032e5cf5
+      - REQUIRE_AUTH=true
+      - PAT_TOKENS=mcp_dev_1234567890abcdef1234567890abcdef
+      - DEBUG=mcp:*
+    env_file:
+      - .env
+    volumes:
+      # Mount source for hot reload in development
+      - ./src:/app/src:ro
+      - ./package.json:/app/package.json:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - mcp-network
+
+networks:
+  mcp-network:
+    driver: bridge
+
+volumes:
+  redis_data: 

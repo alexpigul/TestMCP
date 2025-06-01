@@ -1,0 +1,38 @@
+# Node modules
+node_modules
+npm-debug.log*
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Git
+.git
+.gitignore
+
+# Documentation
+*.md
+docs/
+
+# Development files
+.vscode/
+.idea/
+*.log
+
+# Test files
+test/
+tests/
+**/*.test.js
+**/*.spec.js
+
+# Build artifacts (will be rebuilt in container)
+dist/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker files
+Dockerfile*
+docker-compose*.yml 
